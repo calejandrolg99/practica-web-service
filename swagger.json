@@ -1,110 +1,39 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-      "title": "API Documentation",
-      "version": "1.0.0",
-      "description": "API Documentation using Swagger"
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Documentation",
+    "version": "1.0.0",
+    "description": "API Documentation using Swagger"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Devuelve un mensaje de página de inicio",
+        "responses": {
+          "200": {
+            "description": "Página de inicio",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
     },
-    "paths": {
-      "/": {
-        "get": {
-          "summary": "Devuelve un mensaje de página de inicio",
-          "responses": {
-            "200": {
-              "description": "Página de inicio",
-              "content": {
-                "text/plain": {
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/v0/facultades": {
-        "get": {
-          "summary": "Devuelve el listado de facultades registradas",
-          "responses": {
-            "200": {
-              "description": "Lista de facultades",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "nombre": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "post": {
-          "summary": "Crea una nueva facultad",
-          "requestBody": {
-            "required": true,
+    "/v0/facultades": {
+      "get": {
+        "summary": "Devuelve el listado de facultades registradas",
+        "responses": {
+          "200": {
+            "description": "Lista de facultades",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "nombre": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["id", "nombre"]
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "Facultad creada",
-              "content": {
-                "text/plain": {
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/v0/facultades/{id}": {
-        "get": {
-          "summary": "Devuelve una facultad por su ID",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "id",
-              "schema": {
-                "type": "string"
-              },
-              "required": true,
-              "description": "ID de la facultad"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Facultad encontrada",
-              "content": {
-                "application/json": {
-                  "schema": {
+                  "type": "array",
+                  "items": {
                     "type": "object",
                     "properties": {
                       "id": {
@@ -117,168 +46,131 @@
                   }
                 }
               }
-            },
-            "404": {
-              "description": "Facultad no encontrada"
-            }
-          }
-        },
-        "put": {
-          "summary": "Actualiza una facultad",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "id",
-              "schema": {
-                "type": "string"
-              },
-              "required": true,
-              "description": "ID de la facultad"
-            }
-          ],
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "nombre": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "Facultad actualizada",
-              "content": {
-                "text/plain": {
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Facultad no encontrada"
-            }
-          }
-        },
-        "delete": {
-          "summary": "Elimina una facultad",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "id",
-              "schema": {
-                "type": "string"
-              },
-              "required": true,
-              "description": "ID de la facultad"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Facultad eliminada",
-              "content": {
-                "text/plain": {
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Facultad no encontrada"
             }
           }
         }
       },
-      "/v0/escuelas": {
-        "get": {
-          "summary": "Devuelve el listado de escuelas registradas",
-          "responses": {
-            "200": {
-              "description": "Lista de escuelas",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "nombre": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "post": {
-          "summary": "Crea una nueva escuela",
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "nombre": {
-                      "type": "string"
-                    }
+      "post": {
+        "summary": "Crea una nueva facultad",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
                   },
-                  "required": ["id", "nombre"]
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "Escuela creada",
-              "content": {
-                "text/plain": {
-                  "schema": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "status": {
                     "type": "string"
                   }
+                },
+                "required": ["id", "name"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Facultad creada",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
           }
         }
       },
-      "/v0/escuelas/{id}": {
-        "get": {
-          "summary": "Devuelve una escuela por su ID",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "id",
+      "put": {
+        "summary": "Actualiza una facultad",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
               "schema": {
-                "type": "string"
-              },
-              "required": true,
-              "description": "ID de la escuela"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                }
+              }
             }
-          ],
-          "responses": {
-            "200": {
-              "description": "Escuela encontrada",
-              "content": {
-                "application/json": {
-                  "schema": {
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Facultad actualizada",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Facultad no encontrada"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina una facultad",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Facultad eliminada",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Facultad no encontrada"
+          }
+        }
+      }
+    },
+    "/v0/escuelas": {
+      "get": {
+        "summary": "Devuelve el listado de escuelas registradas",
+        "responses": {
+          "200": {
+            "description": "Lista de escuelas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
                     "type": "object",
                     "properties": {
                       "id": {
@@ -291,111 +183,144 @@
                   }
                 }
               }
-            },
-            "404": {
-              "description": "Escuela no encontrada"
-            }
-          }
-        },
-        "put": {
-          "summary": "Actualiza una escuela",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "id",
-              "schema": {
-                "type": "string"
-              },
-              "required": true,
-              "description": "ID de la escuela"
-            }
-          ],
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "nombre": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "Escuela actualizada",
-              "content": {
-                "text/plain": {
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Escuela no encontrada"
-            }
-          }
-        },
-        "delete": {
-          "summary": "Elimina una escuela",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "id",
-              "schema": {
-                "type": "string"
-              },
-              "required": true,
-              "description": "ID de la escuela"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Escuela eliminada",
-              "content": {
-                "text/plain": {
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Escuela no encontrada"
             }
           }
         }
       },
-      "/v0/secciones": {
-        "get": {
-          "summary": "Obtiene el listado de secciones",
-          "responses": {
-            "200": {
-              "description": "Listado de secciones",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "nombre": {
-                          "type": "string"
-                        },
-                        "curso": {
-                          "type": "string"
-                        },
-                        "profesor": {
-                          "type": "string"
-                        }
+      "post": {
+        "summary": "Crea una nueva escuela",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                },
+                "required": ["id", "name"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Escuela creada",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza una escuela",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Escuela actualizada",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Escuela no encontrada"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina una escuela",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Escuela eliminada",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Escuela no encontrada"
+          }
+        }
+      }
+    },
+    "/v0/secciones": {
+      "get": {
+        "summary": "Obtiene el listado de secciones",
+        "responses": {
+          "200": {
+            "description": "Listado de secciones",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "nombre": {
+                        "type": "string"
+                      },
+                      "curso": {
+                        "type": "string"
+                      },
+                      "profesor": {
+                        "type": "string"
                       }
                     }
                   }
@@ -403,136 +328,148 @@
               }
             }
           }
-        },
-        "post": {
-          "summary": "Crea una nueva sección",
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "nombre": {
-                      "type": "string"
-                    },
-                    "curso": {
-                      "type": "string"
-                    },
-                    "profesor": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["nombre", "curso", "profesor"]
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "Sección creada",
-              "content": {
-                "text/plain": {
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "put": {
-          "summary": "Actualiza una sección existente",
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "nombre": {
-                      "type": "string"
-                    },
-                    "curso": {
-                      "type": "string"
-                    },
-                    "profesor": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["id", "nombre", "curso", "profesor"]
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "Sección actualizada",
-              "content": {
-                "text/plain": {
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Sección no encontrada"
-            }
-          }
-        },
-        "delete": {
-          "summary": "Elimina una sección",
-          "parameters": [
-            {
-              "in": "query",
-              "name": "id",
+        }
+      },
+      "post": {
+        "summary": "Crea una nueva sección",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
               "schema": {
-                "type": "string"
-              },
-              "required": true,
-              "description": "ID de la sección a eliminar"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Sección eliminada",
-              "content": {
-                "text/plain": {
-                  "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "curso": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "escuelaId": {
                     "type": "string"
                   }
+                },
+                "required": ["name", "escuelaId", "status"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sección creada",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
                 }
               }
-            },
-            "404": {
-              "description": "Sección no encontrada"
             }
           }
         }
       },
-      "/v0/personas": {
-        "get": {
-          "summary": "Obtiene el listado de personas",
-          "responses": {
-            "200": {
-              "description": "Listado de personas",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "nombre": {
-                          "type": "string"
-                        }
+      "put": {
+        "summary": "Actualiza una sección",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "escuelaId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sección actualizada",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Sección no encontrada"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina una sección",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sección eliminada",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Sección no encontrada"
+          }
+        }
+      }
+    },
+    "/v0/personas": {
+      "get": {
+        "summary": "Obtiene el listado de personas",
+        "responses": {
+          "200": {
+            "description": "Listado de personas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "nombre": {
+                        "type": "string"
                       }
                     }
                   }
@@ -540,269 +477,287 @@
               }
             }
           }
-        },
-        "post": {
-          "summary": "Crea una nueva persona",
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "nombre": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["id", "nombre"]
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "Persona creada",
-              "content": {
-                "text/plain": {
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "put": {
-          "summary": "Actualiza una persona existente",
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "nombre": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["id", "nombre"]
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "Persona actualizada",
-              "content": {
-                "text/plain": {
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Persona no encontrada"
-            }
-          }
-        },
-        "delete": {
-          "summary": "Elimina una persona",
-          "parameters": [
-            {
-              "in": "query",
-              "name": "id",
+        }
+      },
+      "post": {
+        "summary": "Crea una nueva persona",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
               "schema": {
-                "type": "string"
-              },
-              "required": true,
-              "description": "ID de la persona a eliminar"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Persona eliminada",
-              "content": {
-                "text/plain": {
-                  "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "status": {
                     "type": "string"
                   }
+                },
+                "required": ["id", "first_name", "last_name", "status"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Persona creada",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
                 }
               }
-            },
-            "404": {
-              "description": "Persona no encontrada"
             }
           }
         }
       },
-      "/v0/inscripcion-persona-seccion": {
-        "post": {
-          "summary": "Inscribe a una persona en una sección",
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "personaId": {
-                      "type": "string"
-                    },
-                    "seccionId": {
-                      "type": "string"
-                    }
+      "put": {
+        "summary": "Actualiza una persona existente",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
                   },
-                  "required": ["personaId", "seccionId"]
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                },
+                "required": ["id", "first_name", "last_name", "status"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Persona actualizada",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
           },
-          "responses": {
-            "200": {
-              "description": "Inscripción exitosa",
-              "content": {
-                "text/plain": {
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Persona o sección no encontrada"
-            }
-          }
-        },
-        "delete": {
-          "summary": "Elimina la inscripción de una persona en una sección",
-          "parameters": [
-            {
-              "in": "query",
-              "name": "personaId",
-              "schema": {
-                "type": "string"
-              },
-              "required": true,
-              "description": "ID de la persona"
-            },
-            {
-              "in": "query",
-              "name": "seccionId",
-              "schema": {
-                "type": "string"
-              },
-              "required": true,
-              "description": "ID de la sección"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Inscripción eliminada",
-              "content": {
-                "text/plain": {
-                  "schema": {
-                    "type": "string"
-                  }
-                }
-              }
-            },
-            "404": {
-              "description": "Persona o sección no encontrada"
-            }
+          "404": {
+            "description": "Persona no encontrada"
           }
         }
       },
-      "/v0/estudiantes-seccion/{idSeccion}": {
-        "get": {
-          "summary": "Obtiene el listado de estudiantes de una sección",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "idSeccion",
+      "delete": {
+        "summary": "Elimina una persona",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
               "schema": {
-                "type": "string"
-              },
-              "required": true,
-              "description": "ID de la sección"
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
             }
-          ],
-          "responses": {
-            "200": {
-              "description": "Listado de estudiantes de la sección",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "nombre": {
-                          "type": "string"
-                        }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Persona eliminada",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Persona no encontrada"
+          }
+        }
+      }
+    },
+    "/v0/inscripcion-persona-seccion": {
+      "post": {
+        "summary": "Inscribe a una persona en una sección",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "personaId": {
+                    "type": "string"
+                  },
+                  "seccionId": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "required": ["personaId", "seccionId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Inscripción exitosa",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Persona o sección no encontrada"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina la inscripción de una persona en una sección",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "personaId": {
+                    "type": "string"
+                  },
+                  "seccionId": {
+                    "type": "string"
+                  }
+                },
+                "required": ["personaId", "seccionId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Inscripción eliminada",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Persona o sección no encontrada"
+          }
+        }
+      }
+    },
+    "/v0/estudiantes-seccion/{idSeccion}": {
+      "get": {
+        "summary": "Obtiene el listado de estudiantes de una sección",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idSeccion",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID de la sección"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listado de estudiantes de la sección",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "nombre": {
+                        "type": "string"
                       }
                     }
                   }
                 }
               }
-            },
-            "404": {
-              "description": "Sección no encontrada"
             }
+          },
+          "404": {
+            "description": "Sección no encontrada"
           }
         }
-      },
-      "/v0/profesores-seccion/{idSeccion}": {
-        "get": {
-          "summary": "Obtiene el listado de profesores de una sección",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "idSeccion",
-              "schema": {
-                "type": "string"
-              },
-              "required": true,
-              "description": "ID de la sección"
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Listado de profesores de la sección",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "nombre": {
-                          "type": "string"
-                        }
+      }
+    },
+    "/v0/profesores-seccion/{idSeccion}": {
+      "get": {
+        "summary": "Obtiene el listado de profesores de una sección",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idSeccion",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID de la sección"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Listado de profesores de la sección",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "nombre": {
+                        "type": "string"
                       }
                     }
                   }
                 }
               }
-            },
-            "404": {
-              "description": "Sección no encontrada"
             }
+          },
+          "404": {
+            "description": "Sección no encontrada"
           }
         }
-      }     
+      }
     }
   }
-  
+}
