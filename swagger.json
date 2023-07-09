@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API Documentation",
+    "title": "Documentación de Web Service",
     "version": "1.0.0",
-    "description": "API Documentation using Swagger"
+    "description": "Documentación de la práctica de Web Services"
   },
   "paths": {
     "/": {
