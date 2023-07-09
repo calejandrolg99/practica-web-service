@@ -68,6 +68,41 @@ app.post("/v0/facultades", function (req, res) {
   });
 });
 
+app.put("/v0/facultades/:id", function (req, res) {
+  const facultyId = req.params.id;
+  const updatedFaculty = req.body;
+
+  fs.readFile("data.json", "utf8", (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Error reading data");
+    } else {
+      const jsonData = JSON.parse(data);
+      const index = jsonData.facultades.findIndex(
+        (faculty) => faculty.id === facultyId
+      );
+
+      if (index !== -1) {
+        jsonData.facultades[index] = {
+          ...jsonData.facultades[index],
+          ...updatedFaculty,
+        };
+
+        fs.writeFile("data.json", JSON.stringify(jsonData), (err) => {
+          if (err) {
+            console.error(err);
+            res.status(500).send("Error writing data");
+          } else {
+            res.send("Faculty updated");
+          }
+        });
+      } else {
+        res.status(404).send("Faculty not found");
+      }
+    }
+  });
+});
+
 app.delete("/v0/facultades", function (req, res) {
   fs.readFile("data.json", "utf8", (err, data) => {
     if (err) {
