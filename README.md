@@ -1,6 +1,6 @@
 # API REST para Gestión de Facultades, Escuelas, Secciones y Personas
 
-Esta API REST, desarrollada utilizando Node.js y Express, ha sido diseñada e implementada para permitir la gestión de Facultades, Escuelas, Secciones y Personas. Proporciona operaciones CRUD (Crear, Leer, Actualizar y Eliminar) para cada una de las entidades mencionadas, junto con funcionalidades adicionales para inscripciones y listado de estudiantes y profesores de una sección.
+Esta API REST, desarrollada utilizando Node.js y Express, la persistencia se hizo con un archivo JSON, ha sido diseñada e implementada para permitir la gestión de Facultades, Escuelas, Secciones y Personas. Proporciona operaciones CRUD (Crear, Leer, Actualizar y Eliminar) para cada una de las entidades mencionadas, junto con funcionalidades adicionales para inscripciones y listado de estudiantes y profesores de una sección.
 
 ## Requisitos
 
