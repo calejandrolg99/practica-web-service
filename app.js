@@ -39,7 +39,9 @@ app.get("/v0/facultades", function (req, res) {
     } else {
       const jsonData = JSON.parse(data);
       // Filtrar facultades no eliminadas
-      const facultades = jsonData.facultades.filter(facultad => facultad.status !== 'disabled');
+      const facultades = jsonData.facultades.filter(
+        (facultad) => facultad.status !== "disabled"
+      );
       res.json(facultades);
     }
   });
@@ -54,7 +56,7 @@ app.post("/v0/facultades", function (req, res) {
       const jsonData = JSON.parse(data);
       const newFaculty = req.body;
       newFaculty.created_at = new Date().toISOString(); // Agregar fecha de creación
-      newFaculty.status = 'enabled'; // Estado habilitado
+      newFaculty.status = "enabled"; // Estado habilitado
       jsonData.facultades.push(newFaculty);
       fs.writeFile("data.json", JSON.stringify(jsonData), (err) => {
         if (err) {
@@ -68,8 +70,8 @@ app.post("/v0/facultades", function (req, res) {
   });
 });
 
-app.put("/v0/facultades/:id", function (req, res) {
-  const facultyId = req.params.id;
+app.put("/v0/facultades", function (req, res) {
+  const facultyId = req.body.id;
   const updatedFaculty = req.body;
 
   fs.readFile("data.json", "utf8", (err, data) => {
@@ -79,7 +81,7 @@ app.put("/v0/facultades/:id", function (req, res) {
     } else {
       const jsonData = JSON.parse(data);
       const index = jsonData.facultades.findIndex(
-        (faculty) => faculty.id === facultyId
+        (faculty) => faculty.id == facultyId
       );
 
       if (index !== -1) {
@@ -115,7 +117,7 @@ app.delete("/v0/facultades", function (req, res) {
         (faculty) => faculty.id == id
       );
       if (index !== -1) {
-        jsonData.facultades[index].status = 'disabled'; // Estado deshabilitado
+        jsonData.facultades[index].status = "disabled"; // Estado deshabilitado
         jsonData.facultades[index].deleted_at = new Date().toISOString(); // Agregar fecha de eliminación
         fs.writeFile("data.json", JSON.stringify(jsonData), (err) => {
           if (err) {
@@ -132,7 +134,6 @@ app.delete("/v0/facultades", function (req, res) {
   });
 });
 
-
 app.get("/v0/escuelas", function (req, res) {
   fs.readFile("data.json", "utf8", (err, data) => {
     if (err) {
@@ -140,7 +141,9 @@ app.get("/v0/escuelas", function (req, res) {
       res.status(500).send("Error reading data");
     } else {
       const jsonData = JSON.parse(data);
-      const escuelas = jsonData.escuelas.filter(escuela => escuela.status !== 'disabled');
+      const escuelas = jsonData.escuelas.filter(
+        (escuela) => escuela.status !== "disabled"
+      );
       res.json(escuelas);
     }
   });
@@ -155,9 +158,9 @@ app.post("/v0/escuelas", function (req, res) {
       const jsonData = JSON.parse(data);
       const newSchool = {
         ...req.body,
-        status: 'enabled',
+        status: "enabled",
         created_date: new Date().toISOString(),
-        deleted_date: null
+        deleted_date: null,
       };
       jsonData.escuelas.push(newSchool);
       fs.writeFile("data.json", JSON.stringify(jsonData), (err) => {
@@ -186,7 +189,7 @@ app.put("/v0/escuelas", function (req, res) {
       if (index !== -1) {
         jsonData.escuelas[index] = {
           ...jsonData.escuelas[index],
-          ...updatedSchool
+          ...updatedSchool,
         };
         fs.writeFile("data.json", JSON.stringify(jsonData), (err) => {
           if (err) {
@@ -213,7 +216,7 @@ app.delete("/v0/escuelas", function (req, res) {
       const id = req.body.id;
       const index = jsonData.escuelas.findIndex((school) => school.id == id);
       if (index !== -1) {
-        jsonData.escuelas[index].status = 'disabled';
+        jsonData.escuelas[index].status = "disabled";
         jsonData.escuelas[index].deleted_date = new Date().toISOString();
         fs.writeFile("data.json", JSON.stringify(jsonData), (err) => {
           if (err) {
@@ -230,7 +233,6 @@ app.delete("/v0/escuelas", function (req, res) {
   });
 });
 
-
 app.get("/v0/secciones", function (req, res) {
   fs.readFile("data.json", "utf8", (err, data) => {
     if (err) {
@@ -238,7 +240,9 @@ app.get("/v0/secciones", function (req, res) {
       res.status(500).send("Error reading data");
     } else {
       const jsonData = JSON.parse(data);
-      const sections = jsonData.secciones.filter(section => section.status !== 'disabled');
+      const sections = jsonData.secciones.filter(
+        (section) => section.status !== "disabled"
+      );
       res.json(sections);
     }
   });
@@ -253,9 +257,9 @@ app.post("/v0/secciones", function (req, res) {
       const jsonData = JSON.parse(data);
       const newSection = {
         ...req.body,
-        status: 'enabled',
+        status: "enabled",
         created_date: new Date().toISOString(),
-        deleted_date: null
+        deleted_date: null,
       };
       jsonData.secciones.push(newSection);
       fs.writeFile("data.json", JSON.stringify(jsonData), (err) => {
@@ -282,7 +286,10 @@ app.put("/v0/secciones", function (req, res) {
         (section) => section.id == updatedSection.id
       );
       if (index !== -1) {
-        jsonData.secciones[index] = { ...jsonData.secciones[index], ...updatedSection };
+        jsonData.secciones[index] = {
+          ...jsonData.secciones[index],
+          ...updatedSection,
+        };
         fs.writeFile("data.json", JSON.stringify(jsonData), (err) => {
           if (err) {
             console.error(err);
@@ -306,9 +313,11 @@ app.delete("/v0/secciones", function (req, res) {
     } else {
       const jsonData = JSON.parse(data);
       const id = req.body.id;
-      const index = jsonData.secciones.findIndex((section) => section.id === id);
+      const index = jsonData.secciones.findIndex(
+        (section) => section.id === id
+      );
       if (index !== -1) {
-        jsonData.secciones[index].status = 'disabled';
+        jsonData.secciones[index].status = "disabled";
         jsonData.secciones[index].deleted_date = new Date().toISOString();
         fs.writeFile("data.json", JSON.stringify(jsonData), (err) => {
           if (err) {
@@ -377,8 +386,10 @@ app.put("/v0/personas/:id", function (req, res) {
       );
       if (personaIndex !== -1) {
         if (jsonData.personas[personaIndex].estado === "enabled") {
-          updatedPerson.fechaCreacion = jsonData.personas[personaIndex].fechaCreacion;
-          updatedPerson.fechaEliminacion = jsonData.personas[personaIndex].fechaEliminacion;
+          updatedPerson.fechaCreacion =
+            jsonData.personas[personaIndex].fechaCreacion;
+          updatedPerson.fechaEliminacion =
+            jsonData.personas[personaIndex].fechaEliminacion;
           updatedPerson.estado = "enabled";
           jsonData.personas[personaIndex] = updatedPerson;
           fs.writeFile("data.json", JSON.stringify(jsonData), (err) => {
@@ -413,7 +424,8 @@ app.delete("/v0/personas/:id", function (req, res) {
       if (personaIndex !== -1) {
         if (jsonData.personas[personaIndex].estado === "enabled") {
           jsonData.personas[personaIndex].estado = "disabled";
-          jsonData.personas[personaIndex].fechaEliminacion = new Date().toISOString();
+          jsonData.personas[personaIndex].fechaEliminacion =
+            new Date().toISOString();
           fs.writeFile("data.json", JSON.stringify(jsonData), (err) => {
             if (err) {
               console.error(err);
@@ -485,7 +497,8 @@ app.delete("/v0/inscripcion-persona-seccion", function (req, res) {
       if (sectionIndex !== -1) {
         const enrollmentIndex = jsonData.enrollments.findIndex(
           (enrollment) =>
-            enrollment.seccionId === seccionId && enrollment.personaId === personaId
+            enrollment.seccionId === seccionId &&
+            enrollment.personaId === personaId
         );
         if (enrollmentIndex !== -1) {
           jsonData.enrollments.splice(enrollmentIndex, 1);
@@ -522,7 +535,8 @@ app.get("/v0/estudiantes-seccion/:idSeccion", function (req, res) {
         const students = jsonData.enrollments
           .filter(
             (enrollment) =>
-              enrollment.seccionId === idSeccion && enrollment.type === "student"
+              enrollment.seccionId === idSeccion &&
+              enrollment.type === "student"
           )
           .map((enrollment) =>
             jsonData.personas.find(
@@ -552,7 +566,8 @@ app.get("/v0/profesores-seccion/:idSeccion", function (req, res) {
         const teachers = jsonData.enrollments
           .filter(
             (enrollment) =>
-              enrollment.seccionId === idSeccion && enrollment.type === "teacher"
+              enrollment.seccionId === idSeccion &&
+              enrollment.type === "teacher"
           )
           .map((enrollment) =>
             jsonData.personas.find(
