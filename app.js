@@ -28,7 +28,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(bodyParser.json());
 
 app.get("/", function (req, res) {
-  res.send("Home Page");
+  res.send("Practica WEB SERVICE");
 });
 
 app.get("/v0/facultades", function (req, res) {
